@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Study Notes Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>NOTEX AI</h1>
+
+    <form class="input-section" onsubmit="event.preventDefault(); generateNotes();">
+
+        <!-- Topic -->
+        <label for="topicInput">Enter Topic (Optional)</label>
+        <input 
+            type="text" 
+            id="topicInput"
+            name="topicInput"
+            placeholder="e.g. DBMS, React Hooks"
+        >
+
+        <!-- File Upload -->
+        <label for="fileInput">OR Upload File (PDF / Image / TXT — Max 5MB)</label>
+        <input 
+            type="file" 
+            id="fileInput"
+            name="fileInput"
+            accept=".pdf,.png,.jpg,.jpeg,.txt"
+            aria-label="Upload PDF, image or text file"
+        >
+
+        <!-- Difficulty -->
+        <label for="difficulty">Select Difficulty</label>
+        <select 
+            id="difficulty"
+            name="difficulty"
+            aria-label="Select note difficulty"
+        >
+            <option value="short">Short Notes</option>
+            <option value="detailed">Detailed Notes</option>
+        </select>
+
+        <button type="submit">Generate Notes</button>
+
+    </form>
+
+    <!-- Loading -->
+    <div id="loading" class="hidden" role="status" aria-live="polite">
+        <div class="loader"></div>
+        <p>Analyzing content and generating notes...</p>
+    </div>
+
+    <!-- Output -->
+    <div id="outputSection" class="hidden">
+
+        <div class="notes-header">
+            <h2>Generated Notes</h2>
+            <button 
+                id="closeBtn" 
+                onclick="closeNotes()" 
+                aria-label="Close generated notes"
+            >
+                ✖
+            </button>
+        </div>
+
+        <div id="notesOutput"></div>
+
+        <div class="notes-actions">
+            <button onclick="copyNotes()" type="button">
+                Copy Notes
+            </button>
+            <button onclick="downloadPDF()" type="button">
+                Download PDF
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

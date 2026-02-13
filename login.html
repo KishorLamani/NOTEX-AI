@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Study Notes</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<div class="auth-container">
+
+    <h2 id="formTitle">Login</h2>
+
+    <form id="authForm">
+        <input type="text" id="username" placeholder="Username" required>
+
+        <input type="email" id="email" placeholder="Email" class="hidden">
+
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button type="submit" id="submitBtn">Login</button>
+    </form>
+
+    <p id="toggleText">
+        Don't have an account?
+        <span id="toggleLink">Create one</span>
+    </p>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>
