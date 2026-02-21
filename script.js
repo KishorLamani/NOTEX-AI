@@ -27,20 +27,24 @@ async function generateNotes() {
         return;
     }
 
-    const formData = new FormData();
-    formData.append("topic", topic);
-    formData.append("difficulty", difficulty);
-
-    if (file) {
-        formData.append("file", file);
-    }
+    const hasFile = !!file;
+    const body = hasFile
+        ? (() => {
+            const fd = new FormData();
+            fd.append("topic", topic);
+            fd.append("difficulty", difficulty);
+            fd.append("file", file);
+            return fd;
+        })()
+        : JSON.stringify({ topic, difficulty });
 
     try {
         loading.classList.remove("hidden");
 
         const response = await fetch("/api/generate", {
             method: "POST",
-            body: formData
+            headers: hasFile ? {} : { "Content-Type": "application/json" },
+            body
         });
 
         let data;
