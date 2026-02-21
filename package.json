@@ -1,4 +1,14 @@
 {
+  "name": "ai-study-notes",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",

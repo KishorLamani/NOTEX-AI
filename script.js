@@ -20,9 +20,9 @@ async function generateNotes() {
         return;
     }
 
-    // Validate file size (5MB max)
-    if (file && file.size > 5 * 1024 * 1024) {
-        alert("File size must be under 5MB.");
+    // Validate file size (4MB max - Vercel serverless limit)
+    if (file && file.size > 4 * 1024 * 1024) {
+        alert("File size must be under 4MB.");
         fileInput.value = "";
         return;
     }
@@ -38,12 +38,20 @@ async function generateNotes() {
     try {
         loading.classList.remove("hidden");
 
-        const response = await fetch("/generate", {
+        const response = await fetch("/api/generate", {
             method: "POST",
             body: formData
         });
 
-        const data = await response.json();
+        let data;
+        try {
+            const text = await response.text();
+            data = text ? JSON.parse(text) : {};
+        } catch (e) {
+            loading.classList.add("hidden");
+            alert("Server returned an invalid response. Check Vercel logs or ensure OPENAI_API_KEY is set.");
+            return;
+        }
 
         loading.classList.add("hidden");
 
