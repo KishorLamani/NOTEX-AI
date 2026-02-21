@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "node-fetch": "^2.7.0",
+    "pdf-parse": "^1.1.1",
+    "tesseract.js": "^7.0.0"
+  }
+}
