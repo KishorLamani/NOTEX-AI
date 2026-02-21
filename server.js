@@ -88,9 +88,9 @@ app.post("/generate", upload.single("file"), async (req, res) => {
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${process.env.GROQ_API_KEY}`
-                },
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+                    },
                 body: JSON.stringify({
                     model: "llama-3.1-8b-instant",
                     messages: [
@@ -138,5 +138,5 @@ app.post("/generate", upload.single("file"), async (req, res) => {
 /* ---------------- START SERVER ---------------- */
 
 app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+    console.log(`✅ Server running at http://notex-ai.vercel.app/api`);
 });
